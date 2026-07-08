@@ -1,0 +1,49 @@
+{
+  "name": "cursor-status",
+  "displayName": "Cursor Status",
+  "description": "Zeigt den aktuellen Cursor-Systemstatus in der Statusleiste an.",
+  "version": "0.1.0",
+  "publisher": "cursor-status",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Cursor Status",
+      "properties": {
+        "cursorStatus.refreshIntervalMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Aktualisierungsintervall in Minuten."
+        },
+        "cursorStatus.statusPageUrl": {
+          "type": "string",
+          "default": "https://status.cursor.com",
+          "description": "URL der Cursor-Statusseite."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "typescript": "^5.3.3"
+  }
+}
