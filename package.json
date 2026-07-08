@@ -5,6 +5,14 @@
   "version": "0.1.0",
   "publisher": "cursor-status",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuitIThub/CursorStatus.git"
+  },
+  "homepage": "https://github.com/SuitIThub/CursorStatus#readme",
+  "bugs": {
+    "url": "https://github.com/SuitIThub/CursorStatus/issues"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
