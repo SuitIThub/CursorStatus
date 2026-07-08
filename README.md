@@ -24,11 +24,11 @@ Datenquelle: [status.cursor.com](https://status.cursor.com) (Atlassian Statuspag
 
 ### Aus VSIX (empfohlen)
 
-1. Die Datei `cursor-status-0.1.0.vsix` installieren:
+1. Die Datei `cursor-status-0.1.1.vsix` installieren:
    - **Command Palette** (`Ctrl+Shift+P`) → `Extensions: Install from VSIX…`
    - oder per Terminal:
      ```bash
-     cursor --install-extension cursor-status-0.1.0.vsix
+     cursor --install-extension cursor-status-0.1.1.vsix
      ```
 2. Cursor / VS Code neu laden.
 

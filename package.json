@@ -2,8 +2,9 @@
   "name": "cursor-status",
   "displayName": "Cursor Status",
   "description": "Zeigt den aktuellen Cursor-Systemstatus in der Statusleiste an.",
-  "version": "0.1.0",
-  "publisher": "cursor-status",
+  "version": "0.1.1",
+  "publisher": "Suit-Ji",
+  "icon": "images/icon.png",
   "license": "MIT",
   "repository": {
     "type": "git",
