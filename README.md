@@ -1,38 +1,38 @@
 # Cursor Status
 
-VS Code / Cursor-Erweiterung, die den aktuellen Systemstatus von [Cursor](https://cursor.com) in der IDE-Statusleiste anzeigt.
+VS Code / Cursor extension that displays the current system status of [Cursor](https://cursor.com) in the IDE status bar.
 
-Datenquelle: [status.cursor.com](https://status.cursor.com) (Atlassian Statuspage API).
+Data source: the RSS feed of [status.x.ai](https://status.x.ai) ([`feed.xml`](https://status.x.ai/feed.xml)). Since October 26, 2026, Cursor status updates are published there instead of on status.cursor.com. The feed covers all xAI services, so the extension only considers incidents whose component, title or link contains `cursor` (configurable).
 
-## Funktionen
+## Features
 
-- **Statusleiste** – zeigt den aktuellen Gesamtstatus mit passendem Icon an
-- **Hover-Tooltip** – listet aktive Störungen und alle Updates vom heutigen Tag (UTC)
-- **Klick** – öffnet die offizielle Statusseite im Browser
-- **Auto-Refresh** – periodische Aktualisierung im Hintergrund (standardmäßig alle 5 Minuten)
+- **Status bar** – shows the current overall status with a matching icon
+- **Hover tooltip** – lists active incidents and all updates from today (UTC)
+- **Click** – opens the official status page in your browser
+- **Auto-refresh** – periodic background updates (every 5 minutes by default)
 
-### Status-Anzeige
+### Status indicators
 
-| Zustand | Icon | Bedeutung |
+| State | Icon | Meaning |
 | --- | --- | --- |
-| Operational | ✓ | Alle Systeme betriebsbereit |
-| Minor | ⚠ | Geringfügige Beeinträchtigung |
-| Maintenance | 🔧 | Geplante Wartung |
-| Major / Critical | ✕ | Teilausfall oder schwerer Ausfall |
+| Operational | ✓ | All systems operational |
+| Minor | ⚠ | Active incident with severity `disruption` |
+| Maintenance | 🔧 | Scheduled maintenance |
+| Major | ✕ | Active incident with severity `outage` |
 
 ## Installation
 
-### Aus VSIX (empfohlen)
+### From VSIX (recommended)
 
-1. Die Datei `cursor-status-0.1.1.vsix` installieren:
+1. Install `cursor-status-1.1.0.vsix`:
    - **Command Palette** (`Ctrl+Shift+P`) → `Extensions: Install from VSIX…`
-   - oder per Terminal:
+   - or via terminal:
      ```bash
-     cursor --install-extension cursor-status-0.1.1.vsix
+     cursor --install-extension cursor-status-1.1.0.vsix
      ```
-2. Cursor / VS Code neu laden.
+2. Reload Cursor / VS Code.
 
-### Aus dem Quellcode
+### From source
 
 ```bash
 npm install
@@ -40,16 +40,18 @@ npm run compile
 npm run package
 ```
 
-Die erzeugte `.vsix`-Datei kann anschließend installiert werden.
+Install the generated `.vsix` file afterwards.
 
-## Konfiguration
+## Configuration
 
-| Einstellung | Standard | Beschreibung |
+| Setting | Default | Description |
 | --- | --- | --- |
-| `cursorStatus.refreshIntervalMinutes` | `5` | Aktualisierungsintervall in Minuten (1–60) |
-| `cursorStatus.statusPageUrl` | `https://status.cursor.com` | Basis-URL der Statusseite |
+| `cursorStatus.refreshIntervalMinutes` | `5` | Refresh interval in minutes (1–60) |
+| `cursorStatus.statusPageUrl` | `https://status.x.ai` | Status page opened on click |
+| `cursorStatus.feedUrl` | `https://status.x.ai/feed.xml` | RSS feed the status is read from |
+| `cursorStatus.componentFilter` | `cursor` | Only incidents whose component, title or link contains this text (case-insensitive); empty = all incidents in the feed |
 
-Beispiel in `settings.json`:
+Example in `settings.json`:
 
 ```json
 {
@@ -57,17 +59,17 @@ Beispiel in `settings.json`:
 }
 ```
 
-## Entwicklung
+## Development
 
 ```bash
 npm install
-npm run watch    # TypeScript im Watch-Modus
-npm run compile  # Einmalig kompilieren
-npm run package  # VSIX erstellen
+npm run watch    # TypeScript in watch mode
+npm run compile  # One-off compile
+npm run package  # Create VSIX
 ```
 
-Zum Debuggen in VS Code / Cursor: Ordner öffnen und mit **F5** eine Extension Development Host-Instanz starten (optional `launch.json` anlegen).
+To debug in VS Code / Cursor: open the folder and press **F5** to launch an Extension Development Host (optionally add a `launch.json`).
 
-## Lizenz
+## License
 
-MIT – siehe die Datei `LICENSE` im Projektroot.
+MIT – see the `LICENSE` file in the project root.

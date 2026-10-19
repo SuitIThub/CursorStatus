@@ -1,5 +1,10 @@
 import * as vscode from 'vscode';
-import { fetchStatusSnapshot } from './statusApi';
+import {
+  DEFAULT_COMPONENT_FILTER,
+  DEFAULT_FEED_URL,
+  DEFAULT_STATUS_PAGE_URL,
+  fetchStatusSnapshot,
+} from './statusApi';
 import { StatusIndicator, StatusSnapshot } from './types';
 
 const STATUS_COMMAND = 'cursorStatus.openStatusPage';
@@ -58,7 +63,9 @@ async function refreshStatus(manual: boolean): Promise<void> {
   }
 
   const config = vscode.workspace.getConfiguration('cursorStatus');
-  const statusPageUrl = config.get<string>('statusPageUrl', 'https://status.cursor.com');
+  const statusPageUrl = config.get<string>('statusPageUrl', DEFAULT_STATUS_PAGE_URL);
+  const feedUrl = config.get<string>('feedUrl', DEFAULT_FEED_URL);
+  const componentFilter = config.get<string>('componentFilter', DEFAULT_COMPONENT_FILTER);
 
   if (!lastSnapshot) {
     statusBarItem.text = '$(sync~spin) Cursor';
@@ -66,7 +73,7 @@ async function refreshStatus(manual: boolean): Promise<void> {
   }
 
   try {
-    const snapshot = await fetchStatusSnapshot(statusPageUrl);
+    const snapshot = await fetchStatusSnapshot(feedUrl, statusPageUrl, componentFilter);
     lastSnapshot = snapshot;
     applySnapshot(snapshot);
   } catch (error) {
@@ -156,6 +163,6 @@ function buildErrorTooltip(message: string, statusPageUrl: string): vscode.Markd
 function openStatusPage(): void {
   const statusPageUrl =
     lastSnapshot?.pageUrl ??
-    vscode.workspace.getConfiguration('cursorStatus').get<string>('statusPageUrl', 'https://status.cursor.com');
+    vscode.workspace.getConfiguration('cursorStatus').get<string>('statusPageUrl', DEFAULT_STATUS_PAGE_URL);
   void vscode.env.openExternal(vscode.Uri.parse(statusPageUrl));
 }

@@ -2,7 +2,7 @@
   "name": "cursor-status",
   "displayName": "Cursor Status",
   "description": "Zeigt den aktuellen Cursor-Systemstatus in der Statusleiste an.",
-  "version": "0.1.1",
+  "version": "1.1.0",
   "publisher": "Suit-Ji",
   "icon": "images/icon.png",
   "license": "MIT",
@@ -37,8 +37,18 @@
         },
         "cursorStatus.statusPageUrl": {
           "type": "string",
-          "default": "https://status.cursor.com",
-          "description": "URL der Cursor-Statusseite."
+          "default": "https://status.x.ai",
+          "description": "URL der Statusseite, die beim Klick geöffnet wird."
+        },
+        "cursorStatus.feedUrl": {
+          "type": "string",
+          "default": "https://status.x.ai/feed.xml",
+          "description": "URL des RSS-Feeds, aus dem der Status gelesen wird."
+        },
+        "cursorStatus.componentFilter": {
+          "type": "string",
+          "default": "cursor",
+          "description": "Nur Vorfälle berücksichtigen, deren Komponente, Titel oder Link diesen Text enthält (Groß-/Kleinschreibung egal). Leer = alle Vorfälle des Feeds."
         }
       }
     }
