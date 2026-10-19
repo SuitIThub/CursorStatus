@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - run: npm ci
@@ -32,4 +32,4 @@ jobs:
             exit 1
           fi
 
-      - run: npx ovsx publish --trusted-publishing
+      - run: npx --no-install ovsx publish --trusted-publishing
